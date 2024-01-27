@@ -11,3 +11,20 @@ class User(models.Model):
     }
     role = models.CharField(max_length=100, choices=ROLE_CHOICES, default="user")
 
+
+class Task(models.Model):
+    name = models.CharField(max_length=127)
+    description = models.TextField()
+    
+    STATUS_CHOICES = {
+        "IP": "in progress",
+        "D": "done",
+        "A": "assigned" 
+    }
+    status = models.CharField(max_length=31, choices=STATUS_CHOICES)
+    
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks")
+    
+    
+    
+
